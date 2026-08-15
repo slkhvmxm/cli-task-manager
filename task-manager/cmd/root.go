@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/add"
+	listtask "github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/listTask"
 	"github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/update"
 	"github.com/spf13/cobra"
 )
@@ -32,4 +33,5 @@ func Execute() {
 func init() {
 	rootCmd.AddCommand(add.NewCommand())
 	rootCmd.AddCommand(update.NewCommand())
+	rootCmd.AddCommand(listtask.NewCommand())
 }

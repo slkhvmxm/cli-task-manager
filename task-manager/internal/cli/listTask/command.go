@@ -1,0 +1,83 @@
+package listtask
+
+import (
+	"os"
+
+	"github.com/fatih/color"
+	"github.com/olekukonko/tablewriter"
+	"github.com/olekukonko/tablewriter/renderer"
+	"github.com/olekukonko/tablewriter/tw"
+	"github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/models"
+	"github.com/spf13/cobra"
+)
+
+func NewCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "listTask [task name]",
+		Short: "A brief description of your command",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			var t models.Task
+
+			// Take all exists tasks
+			tasks, err := t.LoadTasks()
+			if err != nil {
+				return err
+			}
+
+			printTable(tasks)
+			return nil
+		},
+	}
+	return cmd
+}
+
+func printTable(tasks []models.Task) {
+	if len(tasks) == 0 {
+		color.Yellow("No tasks found")
+	}
+
+	// Configure colors: green headers, cyan/magenta rows, yellow footer
+	colorCfg := renderer.ColorizedConfig{
+		Header: renderer.Tint{
+			FG: renderer.Colors{color.FgGreen, color.Bold}, // Green bold headers
+			BG: renderer.Colors{color.BgHiWhite},
+		},
+		Column: renderer.Tint{
+			FG: renderer.Colors{color.FgCyan}, // Default cyan for rows
+			Columns: []renderer.Tint{
+				{FG: renderer.Colors{color.FgMagenta}}, // Magenta for column 0
+				{},                                     // Inherit default (cyan)
+				{FG: renderer.Colors{color.FgHiRed}},   // High-intensity red for column 2
+			},
+		},
+		Footer: renderer.Tint{
+			FG: renderer.Colors{color.FgYellow, color.Bold}, // Yellow bold footer
+			Columns: []renderer.Tint{
+				{},                                      // Inherit default
+				{FG: renderer.Colors{color.FgHiYellow}}, // High-intensity yellow for column 1
+				{},                                      // Inherit default
+			},
+		},
+		Border:    renderer.Tint{FG: renderer.Colors{color.FgWhite}}, // White borders
+		Separator: renderer.Tint{FG: renderer.Colors{color.FgWhite}}, // White separators
+	}
+
+	table := tablewriter.NewTable(os.Stdout,
+		tablewriter.WithRenderer(renderer.NewColorized(colorCfg)),
+		tablewriter.WithConfig(tablewriter.Config{
+			Row: tw.CellConfig{
+				Formatting:   tw.CellFormatting{AutoWrap: tw.WrapNormal}, // Wrap long content
+				Alignment:    tw.CellAlignment{Global: tw.AlignLeft},     // Left-align rows
+				ColMaxWidths: tw.CellWidth{Global: 25},
+			},
+			Footer: tw.CellConfig{
+				Alignment: tw.CellAlignment{Global: tw.AlignRight},
+			},
+		}),
+	)
+
+	table.Header([]string{"ID", "Description", "Status", "Created", "Updated"})
+	table.Bulk(tasks)
+	table.Render()
+
+}
