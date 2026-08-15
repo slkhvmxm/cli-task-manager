@@ -37,9 +37,8 @@ func NewCommand() *cobra.Command {
 			for i := range tasks {
 				if tasks[i].ID == id {
 					tasks[i].Description = args[1]
-					now := time.Now()
-					tasks[i].UpdatedAt = &now
-					tasks[i].Status = "updated"
+					now := time.Now().UTC().Format("2006-01-02 15:04:05")
+					tasks[i].UpdatedAt = now
 				}
 			}
 			if err := t.SaveTask(tasks); err != nil {

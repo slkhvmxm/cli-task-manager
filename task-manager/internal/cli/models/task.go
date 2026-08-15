@@ -4,18 +4,17 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"time"
 )
 
 // JSON with all tasks
 const taskFile = "tasks.json"
 
 type Task struct {
-	ID          int        `json:"id"`
-	Description string     `json:"description"`
-	Status      string     `json:"status"`
-	CreatedAt   time.Time  `json:"created_at"`
-	UpdatedAt   *time.Time `json:"updated_at"`
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Status      string `json:"status"`
+	CreatedAt   string `json:"created_at"`
+	UpdatedAt   string `json:"updated_at"`
 }
 
 func (t *Task) UpdateTask(description string) {
