@@ -1,11 +1,11 @@
-package add
+package addtask
 
 import (
 	"fmt"
 	"time"
 
 	"github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/models"
-	"github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/utils"
+	"github.com/slkhvmxm/cli-task-manager/task-manager/internal/utils"
 	"github.com/spf13/cobra"
 )
 
