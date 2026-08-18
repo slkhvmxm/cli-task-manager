@@ -1,4 +1,4 @@
-package listtask
+package deletealltask
 
 import (
 	"github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/models"
@@ -8,14 +8,13 @@ import (
 
 func NewCommand() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "listTask [task name]",
+		Use:   "deleteAll [task name]",
 		Short: "A brief description of your command",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			var t models.Task
+			var tasks []models.Task
 
-			// Take all exists tasks
-			tasks, err := t.LoadTasks()
-			if err != nil {
+			if err := t.SaveTask(tasks); err != nil {
 				return err
 			}
 
