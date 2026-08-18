@@ -7,6 +7,7 @@ import (
 	deletealltask "github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/deleteAllTask"
 	deletetask "github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/deleteTask"
 	listtask "github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/listTask"
+	"github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/mark"
 	updatetask "github.com/slkhvmxm/cli-task-manager/task-manager/internal/cli/updateTask"
 	"github.com/spf13/cobra"
 )
@@ -38,4 +39,5 @@ func init() {
 	rootCmd.AddCommand(listtask.NewCommand())
 	rootCmd.AddCommand(deletetask.NewCommand())
 	rootCmd.AddCommand(deletealltask.NewCommand())
+	rootCmd.AddCommand(mark.NewCommand())
 }

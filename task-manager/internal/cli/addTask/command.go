@@ -33,7 +33,7 @@ func NewCommand() *cobra.Command {
 			task := models.Task{
 				ID:          utils.GetMaxID(tasks),
 				Description: args[0],
-				Status:      "in progress",
+				Status:      "created",
 				CreatedAt:   time.Now().UTC().Format("2006-01-02 15:04:05"),
 				UpdatedAt:   "",
 			}
