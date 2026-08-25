@@ -9,7 +9,7 @@ import (
 func NewCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "deleteAll [task name]",
-		Short: "A brief description of your command",
+		Short: "delete all tasks",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			var t models.Task
 			var tasks []models.Task

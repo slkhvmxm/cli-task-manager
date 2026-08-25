@@ -12,7 +12,7 @@ import (
 func NewCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "addTask [task name]",
-		Short: "A brief description of your command",
+		Short: "add task with description",
 		Args:  cobra.MaximumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			var t models.Task

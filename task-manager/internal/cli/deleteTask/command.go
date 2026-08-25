@@ -11,8 +11,8 @@ import (
 func NewCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "deleteTask [task name]",
-		Short: "A brief description of your command",
-		Args:  cobra.MaximumNArgs(1),
+		Short: "delete task by ID",
+		Args:  cobra.MinimumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			var t models.Task
 

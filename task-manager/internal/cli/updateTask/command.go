@@ -13,7 +13,7 @@ import (
 func NewCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "updateTask [task id] [task new description]",
-		Short: "A brief description of your command",
+		Short: "update task`s description with specific ID ",
 		Args:  cobra.MaximumNArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {
 

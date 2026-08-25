@@ -9,7 +9,7 @@ import (
 func NewCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "listTask [task name]",
-		Short: "A brief description of your command",
+		Short: "list all tasks",
 		Args:  cobra.MaximumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			var t models.Task
