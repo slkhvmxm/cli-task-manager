@@ -9,8 +9,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// addTaskCmd represents the addTask command
-
 func NewCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "addTask [task name]",
